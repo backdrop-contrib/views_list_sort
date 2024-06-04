@@ -1,6 +1,7 @@
 name = Views List Sort
-description = Allows views to be sorted by a list field's allowed values.
+description = Allows views to be sorted by the allowed values of a text list field.
 backdrop = 1.x
 type = module
 package = Views
+
 dependencies[] = views

@@ -1,9 +1,12 @@
 <?php
+/**
+ * @file
+ */
 
 /**
- * Implements hook_views_api() from Views().
+ * Implements hook_views_api().
  */
-function views_list_sort_views_api($module = NULL, $api = NULL) {
+function views_list_sort_views_api() {
   return array(
     'api' => 3,
     'path' => backdrop_get_path('module', 'views_list_sort') . '/views',
@@ -15,6 +18,6 @@ function views_list_sort_views_api($module = NULL, $api = NULL) {
  */
 function views_list_sort_autoload_info() {
   return array(
-    'views_list_sort_handler_sort_allowed_values' => 'views/handlers/views_list_sort_handler_sort_allowed_values.inc',
+    'views_list_sort_handler_sort_allowed_values' => 'includes/views_list_sort_handler_sort_allowed_values.inc',
   );
 }
