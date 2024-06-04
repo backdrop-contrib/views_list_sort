@@ -17,7 +17,7 @@ class views_list_sort_handler_sort_allowed_values extends views_handler_sort {
   /**
    * Options form.
    */
-  function options_form(&$form, &$form_state) {
+  function options_form($form, $form_state) {
     parent::options_form($form, $form_state);
     $form['allowed_values'] = array(
       '#type' => 'radios',
@@ -32,16 +32,19 @@ class views_list_sort_handler_sort_allowed_values extends views_handler_sort {
    */
   function query() {
     // Skip if disabled.
+
     if (!$this->options['allowed_values']) {
       return;
     }
 
     // Get database connection.
+
     $target = !empty($this->query->options) ? 'slave' : 'default';
     $key = isset($this->view->base_database) ? $this->view->base_database : 'default';
     $connection = Database::getConnection($target, $key);
 
     // Build sanitized list of keys from field's allowed values.
+
     $keys = array();
     $allowed_values = list_allowed_values(field_info_field($this->definition['field_name']));
     foreach ($allowed_values as $key => $value) {
@@ -49,6 +52,7 @@ class views_list_sort_handler_sort_allowed_values extends views_handler_sort {
     }
 
     // Add order by expression.
+
     $this->ensure_my_table();
     $expression = "FIELD($this->table_alias.$this->real_field, " . join(', ', $keys) . ")";
     $this->query->add_orderby(NULL, NULL, $this->options['order'], $expression);
