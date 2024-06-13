@@ -23,9 +23,6 @@ class views_list_sort_handler_sort_allowed_values extends views_handler_sort {
     $keys = [];
     $allowed_values = list_allowed_values(field_info_field($this->definition['field_name']));
 
-    // Key sort:
-    // sort($allowed_values);
-
     // Natural sort, case insensitive, on allowed values:
     natcasesort($allowed_values);
 
